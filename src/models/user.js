@@ -1,4 +1,6 @@
 'use strict';
+const { hashPass } = require('../helpers/bcrypt');
+
 const {
   Model
 } = require('sequelize');
@@ -14,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   User.init({
+    UID: DataTypes.INTEGER,
     email: {
       type: DataTypes.STRING,
       unique: true,
@@ -65,11 +68,39 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    firstname: { type: DataTypes.STRING, allowNull: false },
-    lastname: { type: DataTypes.STRING, allowNull: false },
+    firstname: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: 'Please insert your name!'
+        }
+      }
+    },
+    lastname: { type: DataTypes.STRING },
+    profpic: { type: DataTypes.STRING, allowNull: false },
     currency: DataTypes.STRING,
     locales: DataTypes.STRING
   }, {
+    hooks: {
+      beforeCreate (user) {
+        const dateString = new Date().toISOString();
+
+        const dateFront = dateString.split("T")[0].split("-").join("").slice(2);
+        const dateBack = parseFloat(dateString.split("T")[1].split(":")[2])
+          .toFixed(2)
+          .split(".")
+          .join("");
+
+        const dateBackDone = dateBack.length < 4 ? `0${dateBack}` : `${dateBack}`;
+
+        user.UID = Number(dateFront + dateBackDone);
+        user.password = hashPass(user.password);
+        !user.lastname ? user.lastname = user.firstname : user.lastname;
+        !user.profpic ? `https://ui-avatars.com/api/?name=${user.username}&background=random&length=1&bold=true&color=ffffff` : user.profpic;
+      }
+    },
     sequelize,
     modelName: 'User',
   });
