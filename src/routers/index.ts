@@ -1,7 +1,11 @@
-import express, { Router } from 'express';
+import { Router } from 'express';
 
-const router = express.Router();
+import user from './user';
 
-router.get('/', (req, res) => res.send('🛒 Shoppa Server OK!'));
+const router = Router();
+
+router.get('/', (_, res) => res.send('🛒 Shoppa Server OK!'));
+
+router.use('/user', user);
 
 export default router;
