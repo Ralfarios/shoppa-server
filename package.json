@@ -17,7 +17,7 @@
     "db:seed:all:development": "SET NODE_ENV=development&npm run db:seed:all",
     "db:seed:undo:development": "SET NODE_ENV=development&npm run db:seed:undo",
     "start": "node dist/bin/http.js",
-    "dev": "nodemon src/bin/http.ts",
+    "dev": "SET NODE_ENV=development&nodemon src/bin/http.ts",
     "build": "tsc -p ."
   },
   "keywords": [],

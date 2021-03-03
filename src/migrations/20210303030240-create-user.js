@@ -23,7 +23,6 @@ module.exports = {
         type: Sequelize.STRING
       },
       username: {
-        allowNull: false,
         type: Sequelize.STRING,
         unique: true
       },
@@ -39,9 +38,11 @@ module.exports = {
         type: Sequelize.STRING
       },
       currency: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       locales: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       createdAt: {

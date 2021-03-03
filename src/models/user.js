@@ -49,7 +49,6 @@ module.exports = (sequelize, DataTypes) => {
     username: {
       type: DataTypes.STRING,
       unique: true,
-      allowNull: false,
       validate: {
         notEmpty: {
           args: true,
@@ -78,10 +77,10 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    lastname: { type: DataTypes.STRING },
+    lastname: DataTypes.STRING,
     profpic: { type: DataTypes.STRING, allowNull: false },
-    currency: DataTypes.STRING,
-    locales: DataTypes.STRING
+    currency: { type: DataTypes.STRING, allowNull: false },
+    locales: { type: DataTypes.STRING, allowNull: false }
   }, {
     hooks: {
       beforeCreate (user) {
@@ -98,7 +97,9 @@ module.exports = (sequelize, DataTypes) => {
         user.UID = Number(dateFront + dateBackDone);
         user.password = hashPass(user.password);
         !user.lastname ? user.lastname = user.firstname : user.lastname;
-        !user.profpic ? `https://ui-avatars.com/api/?name=${user.username}&background=random&length=1&bold=true&color=ffffff` : user.profpic;
+        !user.profpic ? user.profpic = `https://ui-avatars.com/api/?name=${user.username}&background=random&length=1&bold=true&color=ffffff` : user.profpic;
+        !user.currency ? user.currency = 'USD' : user.currency;
+        !user.locales ? user.locales = 'en-US' : user.locales;
       }
     },
     sequelize,
