@@ -1,0 +1,6 @@
+## Credentials
+.env
+dist/
+
+## Packages
+node_modules/
