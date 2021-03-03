@@ -26,7 +26,7 @@ export default class UserController {
         lastname: register.lastname
       });
     } catch (err) {
-      res.send(err);
+      next(err);
     };
   };
 
@@ -64,7 +64,7 @@ export default class UserController {
 
       return res.status(200).json({ access_token });
     } catch (err) {
-      res.send(err);
+      next(err);
     };
   };
 
@@ -101,7 +101,7 @@ export default class UserController {
       if (!user) throw { name: 'userNotFound' };
       return res.status(200).json(user);
     } catch (err) {
-      res.send(err);
+      next(err);
     };
   };
 
@@ -127,7 +127,7 @@ export default class UserController {
 
       return res.status(200).json(user);
     } catch (err) {
-      res.send(err);
+      next(err);
     };
   };
 
@@ -163,7 +163,7 @@ export default class UserController {
 
       return res.status(200).json({ access_token });
     } catch (err) {
-      res.send(err);
+      next(err);
     };
   };
 
@@ -175,6 +175,8 @@ export default class UserController {
 
       const user = await User.findOne({ where: { UID } });
 
+      if (!user) throw { name: 'userNotFound' };
+
       const chkPass = compPass(password, user.password);
 
       if (!chkPass) throw { name: 'wrongPass' };
@@ -183,7 +185,7 @@ export default class UserController {
 
       res.status(200).json({ name: 'accDeleted' });
     } catch (err) {
-      res.send(err);
+      next(err);
     };
   };
 };
