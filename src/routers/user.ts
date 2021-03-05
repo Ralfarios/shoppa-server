@@ -8,6 +8,7 @@ router.post('/login', userController.userLogin);
 
 router.get('/getselfinfo', userController.userGetSelfInfo); // no need params
 router.get('/:userInfo', userController.userGetInfo);
+
 router.put('/updateselfinfo', userController.userEditInfo);
 router.delete('/deleteself', userController.deleteUser);
 
