@@ -41,9 +41,27 @@ export default class UserListController {
   static async userListGetOne(req: any, res: any, next: any) {
     try {
       const ULID = req.params.userlistid;
-      const getOne: any = await UserList.findOne({ where: { UserId: req.user.id, ULID } });
+      const getOne: any = await UserList.findOne({ where: { ULID } });
+
+      if (!getOne) throw { name: 'userlistNotFound' };
 
       return res.status(200).json(getOne);
+    } catch (err) {
+      next(err);
+    };
+  };
+
+  static async userListEdit(req: any, res: any, next: any) {
+    try {
+      console.log('EDIT');
+    } catch (err) {
+      next(err);
+    };
+  };
+
+  static async userListDelete(req: any, res: any, next: any) {
+    try {
+      console.log('DELETE');
     } catch (err) {
       next(err);
     };

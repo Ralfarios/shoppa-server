@@ -1,6 +1,6 @@
 import { chkToken } from '../helpers/jwt';
 
-const { User } = require('../models/index');
+const { User, UserList } = require('../models/index');
 
 export const authenticate = async (req: any, res: any, next: any) => {
   try {
@@ -20,9 +20,16 @@ export const authenticate = async (req: any, res: any, next: any) => {
   };
 };
 
-export const authorize = async (req: any, res: any, next: any) => {
+export const authorizeUserList = async (req: any, res: any, next: any) => {
   try {
-    console.log('author');
+    const { id } = req.user;
+    const findOne: any = await UserList.findOne({ where: { ULID: req.params.userlistid } });
+
+    if (!findOne) throw { name: 'userlistNotFound' };
+
+    if (findOne.UserId !== id) throw { name: 'unauthorize' };
+
+    return next();
   } catch (err) {
     next(err);
   };
