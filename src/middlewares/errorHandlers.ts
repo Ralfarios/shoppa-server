@@ -17,7 +17,7 @@ export const errorHandlers = (err: any, req: any, res: any, next: any) => {
         errors = err.errors.map((e: any) => e.message);
         return res.status(409).json({ errors });
       default:
-        break;
+        return res.status(500).json({ errors: ['Internal server error'] });
     };
   };
 };
