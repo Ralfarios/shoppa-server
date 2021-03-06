@@ -12,11 +12,11 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate (models) {
-      // define association here
+      User.hasMany(models.UserList, { foreignKey: 'UserId' });
     }
   };
   User.init({
-    UID: DataTypes.INTEGER,
+    UID: { type: DataTypes.STRING, unique: true },
     email: {
       type: DataTypes.STRING,
       unique: true,
@@ -86,7 +86,7 @@ module.exports = (sequelize, DataTypes) => {
       beforeCreate (user) {
         const dateString = new Date().toISOString();
 
-        const dateFront = dateString.split("T")[0].split("-").join("").slice(2);
+        const dateFront = dateString.split("T")[0].split("-").join("");
         const dateBack = parseFloat(dateString.split("T")[1].split(":")[2])
           .toFixed(2)
           .split(".")
@@ -94,7 +94,7 @@ module.exports = (sequelize, DataTypes) => {
 
         const dateBackDone = dateBack.length < 4 ? `0${dateBack}` : `${dateBack}`;
 
-        user.UID = Number(dateFront + dateBackDone);
+        user.UID = dateFront + dateBackDone;
         user.password = hashPass(user.password);
         !user.lastname ? user.lastname = user.firstname : user.lastname;
         !user.profpic ? user.profpic = `https://ui-avatars.com/api/?name=${user.username}&background=random&length=1&bold=true&color=ffffff` : user.profpic;

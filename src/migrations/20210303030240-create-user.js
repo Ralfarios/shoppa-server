@@ -10,7 +10,7 @@ module.exports = {
       },
       UID: {
         allowNull: false,
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         unique: true
       },
       email: {

@@ -6,6 +6,7 @@
   "scripts": {
     "sequelize:init:development": "SET NODE_ENV=development&sequelize init",
     "model:user:development": "SET NODE_ENV=development&sequelize model:generate --name User --attributes email:string,password:string,username:string,firstname:string,lastname:string,currency:string,locales:string",
+    "model:userlist:development": "SET NODE_ENV=development&sequelize model:generate --name UserList --attributes name:string,currency:string,date:date,color:string,ULID:integer,UserId:integer",
     "db:create": "sequelize db:create",
     "db:migrate": "sequelize db:migrate",
     "db:migrate:undo": "sequelize db:migrate:undo",
@@ -16,7 +17,7 @@
     "db:migrate:undo:development": "SET NODE_ENV=development&npm run db:migrate:undo",
     "db:seed:all:development": "SET NODE_ENV=development&npm run db:seed:all",
     "db:seed:undo:development": "SET NODE_ENV=development&npm run db:seed:undo",
-    "start": "node dist/bin/http.js",
+    "start": "SET NODE_ENV=development&node dist/bin/http.js",
     "dev": "SET NODE_ENV=development&nodemon src/bin/http.ts",
     "build": "tsc -p ."
   },
