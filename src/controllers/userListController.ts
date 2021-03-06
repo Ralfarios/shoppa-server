@@ -53,7 +53,14 @@ export default class UserListController {
 
   static async userListEdit(req: any, res: any, next: any) {
     try {
-      console.log('EDIT');
+      const ULID: string = req.params.userlistid;
+      const { name, currency, date, color } = req.body;
+      const input: object = { name, currency, date, color };
+
+      const edit: any = await UserList.update(input, { where: { ULID } });
+      const findOne: any = await UserList.findOne({ where: { ULID }, edit });
+
+      return res.status(200).json(findOne);
     } catch (err) {
       next(err);
     };
@@ -61,7 +68,11 @@ export default class UserListController {
 
   static async userListDelete(req: any, res: any, next: any) {
     try {
-      console.log('DELETE');
+      const ULID: string = req.params.userlistid;
+
+      await UserList.destroy({ where: { ULID } });
+
+      return res.status(200).json({msg: 'List has been deleted'});
     } catch (err) {
       next(err);
     };
