@@ -70,13 +70,13 @@ export default class UserController {
 
   static async userGetInfo(req: any, res: any, next: any) {
     try {
-      const userInfo: any = req.params.userInfo;
-      const isNotNum = isNaN(Number(userInfo));
+      const userinfo: any = req.params.userinfo;
+      const isNotNum = isNaN(Number(userinfo));
       let user: any;
 
       if (isNotNum) {
         user = await User.findOne({
-          where: { username: userInfo }, attributes: {
+          where: { username: userinfo }, attributes: {
             exclude: [
               'id',
               'password',
@@ -87,7 +87,7 @@ export default class UserController {
         });
       } else if (!isNotNum) {
         user = await User.findOne({
-          where: { UID: Number(userInfo) }, attributes: {
+          where: { UID: Number(userinfo) }, attributes: {
             exclude: [
               'id',
               'password',
