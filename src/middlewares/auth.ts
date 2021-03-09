@@ -36,8 +36,17 @@ export default class Auth {
     };
   };
 
-  static async authorizeList(req: any, res: any, next: any) {
+  static async authenticateList(req: any, res: any, next: any) {
     try {
+      const { ULID }: any = req.params;
+      const findOne: any = await UserList.findOne({ where: { ULID } });
+
+      if (!findOne) throw { name: 'userlistNotFound' };
+
+      if (findOne.UserId !== req.user.id) throw { name: 'unauthorize' };
+
+      req.userlist = findOne;
+
       return next();
     } catch (err) {
       next(err);

@@ -1,9 +1,20 @@
-const { List } = require('../models/index');
+const { UserList, List } = require('../models/index');
 
 export default class ListController {
   static async listCreate(req: any, res: any, next: any) {
     try {
-      res.send('LIST CREATE OK');
+      const { title, price, isDone } = req.body;
+      const input: object = {
+        title,
+        price: Number(price),
+        isDone,
+        UserId: req.user.id,
+        UserListId: req.userlist.id
+      };
+
+      const create: any = await List.create(input);
+
+      return res.status(201).json(create);
     } catch (err) {
       next(err);
     };
@@ -11,7 +22,9 @@ export default class ListController {
 
   static async listGetAll(req: any, res: any, next: any) {
     try {
-      res.send('LIST GET ALL OK')
+      const { ULID } = req.params;
+
+      const findUserList = await UserList.findOne({ where: { ULID } });
     } catch (err) {
       next(err);
     };

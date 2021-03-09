@@ -19,14 +19,13 @@ module.exports = (sequelize, DataTypes) => {
     price: {
       type: DataTypes.INTEGER,
       validate: {
-        min: {
-          args: 0,
-          msg: 'Minimal value is 0'
+        isBelowZero (value) {
+          if (value < 0) throw new Error('Minimal value is 0');
         }
       }
     },
     isDone: DataTypes.BOOLEAN,
-    LID: { type: DataTypes.INTEGER, unique: true },
+    LID: { type: DataTypes.STRING, unique: true },
     UserId: DataTypes.INTEGER,
     UserListId: DataTypes.INTEGER
   }, {

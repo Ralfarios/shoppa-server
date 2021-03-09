@@ -14,6 +14,6 @@ router.use('/user', user);
 router.use(auth.authenticate);
 
 router.use('/userlist', userList);
-router.use('/list', list);
+router.use('/userlist', list);
 
 export default router;

@@ -7,7 +7,7 @@
     "sequelize:init:development": "SET NODE_ENV=development&sequelize init",
     "model:user:development": "SET NODE_ENV=development&sequelize model:generate --name User --attributes email:string,password:string,username:string,firstname:string,lastname:string,currency:string,locales:string",
     "model:userlist:development": "SET NODE_ENV=development&sequelize model:generate --name UserList --attributes name:string,currency:string,date:date,color:string,ULID:integer,UserId:integer",
-    "model:list:development": "SET NODE_ENV=development&sequelize model:generate --name List --attributes title:string,price:integer,isDone:boolean,LID:integer,UserId:integer,UserListId:integer",
+    "model:list:development": "SET NODE_ENV=development&sequelize model:generate --name List --attributes title:string,price:integer,isDone:boolean,LID:string,UserId:integer,UserListId:integer",
     "db:create": "sequelize db:create",
     "db:migrate": "sequelize db:migrate",
     "db:migrate:undo": "sequelize db:migrate:undo",

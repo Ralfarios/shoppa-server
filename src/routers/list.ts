@@ -1,16 +1,17 @@
 import { Router } from 'express';
 
+import auth from '../middlewares/auth';
 import ListController from '../controllers/listController';
 
 const router = Router();
 
-router.post('/', ListController.listCreate);
+router.post('/:ULID/list', auth.authenticateList, ListController.listCreate);
 
-router.get('/', ListController.listGetAll);
-router.get('/:listid', ListController.listGetOne);
+router.get('/:ULID/list', auth.authenticateList, ListController.listGetAll);
+router.get('/:ULID/list/:listid', ListController.listGetOne);
 
-router.put('/:listid', ListController.listUpdate);
+router.put('/:ULID/list/:listid', ListController.listUpdate);
 
-router.delete('/:listid', ListController.listDelete);
+router.delete('/:ULID/list/:listid', ListController.listDelete);
 
 export default router;

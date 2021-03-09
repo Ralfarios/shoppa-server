@@ -18,7 +18,7 @@ module.exports = {
         type: Sequelize.BOOLEAN
       },
       LID: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         unique: true
       },
       UserId: {
