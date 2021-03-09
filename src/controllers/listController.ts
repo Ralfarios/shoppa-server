@@ -1,3 +1,5 @@
+import list from "../models/list";
+
 const { UserList, List } = require('../models/index');
 
 export default class ListController {
@@ -22,9 +24,9 @@ export default class ListController {
 
   static async listGetAll(req: any, res: any, next: any) {
     try {
-      const { ULID } = req.params;
+      const findAll: any = await List.findAll({ where: { UserListId: req.userlist.id } });
 
-      const findUserList = await UserList.findOne({ where: { ULID } });
+      return res.status(200).json(findAll);
     } catch (err) {
       next(err);
     };
@@ -41,6 +43,14 @@ export default class ListController {
   static async listUpdate(req: any, res: any, next: any) {
     try {
       res.send('LIST UPDATE OK');
+    } catch (err) {
+      next(err);
+    };
+  };
+
+  static async listMarkAsDone(req: any, res: any, next: any) {
+    try {
+      res.send('LIST PATCH OK');
     } catch (err) {
       next(err);
     };

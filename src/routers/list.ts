@@ -11,6 +11,7 @@ router.get('/:ULID/list', auth.authenticateList, ListController.listGetAll);
 router.get('/:ULID/list/:listid', ListController.listGetOne);
 
 router.put('/:ULID/list/:listid', ListController.listUpdate);
+router.patch('/:ULID/list/:listid', ListController.listMarkAsDone);
 
 router.delete('/:ULID/list/:listid', ListController.listDelete);
 
