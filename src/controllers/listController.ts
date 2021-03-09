@@ -24,4 +24,20 @@ export default class ListController {
       next(err);
     };
   };
+
+  static async listUpdate(req: any, res: any, next: any) {
+    try {
+      res.send('LIST UPDATE OK');
+    } catch (err) {
+      next(err);
+    };
+  };
+
+  static async listDelete(req: any, res: any, next: any) {
+    try {
+      res.send('LIST DELETE OK');
+    } catch (err) {
+      next(err);
+    };
+  };
 };
