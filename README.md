@@ -24,3 +24,15 @@ For the detail, visit this User API Documentation
 | `/user/:userinfo`      | GET         | Get Information for someone account    | Everyone        |
 | `/user/updateselfinfo` | UPDATE      | Update Information for your account    | User            |
 | `/user/deleteself`     | DELETE      | Delete your account                    | User            |
+
+### UserList
+For the detail, visit this UserList API Documentation
+| Route                  | Method      | Description                            | Authorization   |
+| ---------------------- | ----------- | -------------------------------------- | --------------- |
+| `/userlist/`           | POST        | Create a List                          | User            |
+| `/userlist/`           | GET         | Get all List                           | User            |
+| `/userlist/:userlistid`| GET         | Get one List                           | User            |
+| `/userlist/:userlistid`| UPDATE      | Update a List                          | User            |
+| `/userlist/:userlistid`| DELETE      | Delete a List                          | User            |
+
+
