@@ -22,7 +22,7 @@ For the detail, visit this User API Documentation
 | `/user/login`          | POST        | Login for User                         | Everyone        |
 | `/user/getselfinfo`    | GET         | Get Information for your account       | User            |
 | `/user/:userinfo`      | GET         | Get Information for someone account    | Everyone        |
-| `/user/updateselfinfo` | UPDATE      | Update Information for your account    | User            |
+| `/user/updateselfinfo` | PUT         | Update Information for your account    | User            |
 | `/user/deleteself`     | DELETE      | Delete your account                    | User            |
 
 ### UserList
@@ -30,9 +30,27 @@ For the detail, visit this UserList API Documentation
 | Route                  | Method      | Description                            | Authorization   |
 | ---------------------- | ----------- | -------------------------------------- | --------------- |
 | `/userlist/`           | POST        | Create a List                          | User            |
-| `/userlist/`           | GET         | Get all List                           | User            |
+| `/userlist/`           | GET         | Get all Lists                          | User            |
 | `/userlist/:userlistid`| GET         | Get one List                           | User            |
-| `/userlist/:userlistid`| UPDATE      | Update a List                          | User            |
+| `/userlist/:userlistid`| PUT         | Update a List                          | User            |
 | `/userlist/:userlistid`| DELETE      | Delete a List                          | User            |
 
+### List
+For the detail, visit this List API Documentation
+| Route                         | Method      | Description                            | Authorization   |
+| ----------------------------- | ----------- | -------------------------------------- | --------------- |
+| `/userlist/:ULID/list`        | POST        | Write an Item                          | User            |
+| `/userlist/:ULID/list`        | GET         | Get all Items                          | User            |
+| `/userlist/:ULID/list/:listid`| GET         | Get one Item                           | User            |
+| `/userlist/:ULID/list/:listid`| PUT         | Update a Item                          | User            |
+| `/userlist/:ULID/list/:listid`| PATCH       | Mark an Item as Done                   | User            |
+| `/userlist/:ULID/list/:listid`| DELETE      | Delete an Item                         | User            |
 
+## Getting started
+Before you start, make sure to make `.env` file on root project dir, and `NodeJS` already installed on your machine.
+
+## Executing
+After you clone this repo, make sure to create the database and migrate everything on migrations, and then run it with `$ npm run dev` command.
+
+## Any Question?
+Feel free to ask me.
