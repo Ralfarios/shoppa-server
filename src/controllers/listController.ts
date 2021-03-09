@@ -34,7 +34,12 @@ export default class ListController {
 
   static async listGetOne(req: any, res: any, next: any) {
     try {
-      res.send('LIST GET ONE OK');
+      const { listid } = req.params;
+      const findOne: any = await List.findOne({ where: { LID: listid } });
+
+      if (!findOne) throw { name: 'listNotFound' };
+
+      return res.status(200).json(findOne);
     } catch (err) {
       next(err);
     };

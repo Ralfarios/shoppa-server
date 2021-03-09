@@ -12,8 +12,8 @@ router.get('/', (_, res) => res.send('🛒 Shoppa Server OK!'));
 router.use('/user', user);
 
 router.use(auth.authenticate);
-
 router.use('/userlist', userList);
+
 router.use('/userlist', list);
 
 export default router;

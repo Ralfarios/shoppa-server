@@ -17,6 +17,8 @@ export const errorHandlers = (err: any, req: any, res: any, next: any) => {
         return res.status(404).json({ errors: ['User not found'] });
       case 'userlistNotFound':
         return res.status(404).json({ errors: ['List not found'] });
+      case 'listNotFound':
+        return res.status(404).json({ errors: ['Item not found'] });
       case 'SequelizeUniqueConstraintError':
         errors = err.errors.map((e: any) => e.message);
         return res.status(409).json({ errors });
