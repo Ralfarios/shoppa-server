@@ -67,7 +67,13 @@ export default class ListController {
 
   static async listMarkAsDone(req: any, res: any, next: any) {
     try {
-      res.send('LIST PATCH OK');
+      const LID: string = req.params.listid;
+      const isDone: boolean = req.body.isDone;
+
+      const mark: any = await List.update({ isDone }, { where: { LID } });
+      const findOne: any = await List.findOne({ where: { LID } }, mark);
+
+      return res.status(200).json(findOne);
     } catch (err) {
       next(err);
     };
