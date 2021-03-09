@@ -1,6 +1,4 @@
-import list from "../models/list";
-
-const { UserList, List } = require('../models/index');
+const { List } = require('../models/index');
 
 export default class ListController {
   static async listCreate(req: any, res: any, next: any) {
@@ -81,7 +79,11 @@ export default class ListController {
 
   static async listDelete(req: any, res: any, next: any) {
     try {
-      res.send('LIST DELETE OK');
+      const LID: string = req.params.listid;
+
+      await List.destroy({ where: { LID } });
+
+      return res.status(200).json({ msg: 'Item has been deleted' });
     } catch (err) {
       next(err);
     };
