@@ -47,8 +47,20 @@ export default class ListController {
 
   static async listUpdate(req: any, res: any, next: any) {
     try {
-      res.send('LIST UPDATE OK');
+      const LID: string = req.params.listid;
+      const { title, price, isDone } = req.body;
+      const input: object = {
+        title,
+        price: Number(price),
+        isDone
+      };
+
+      const edit: any = await List.update(input, { where: { LID } });
+      const findOne: any = await List.findOne({ where: { LID } }, edit);
+
+      return res.status(200).json(findOne);
     } catch (err) {
+      console.log(err)
       next(err);
     };
   };
