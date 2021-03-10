@@ -98,7 +98,7 @@ module.exports = (sequelize, DataTypes) => {
         user.UID = dateFront + dateBackDone;
         user.password = hashPass(user.password);
         !user.lastname ? user.lastname = user.firstname : user.lastname;
-        !user.profpic ? user.profpic = `https://ui-avatars.com/api/?name=${user.username}&background=random&length=1&bold=true&color=ffffff` : user.profpic;
+        !user.profpic ? user.profpic = `https://ui-avatars.com/api/?name=${user.firstname}&background=random&length=1&bold=true&color=ffffff` : user.profpic;
         !user.currency ? user.currency = 'USD' : user.currency;
         !user.locales ? user.locales = 'en-US' : user.locales;
       }

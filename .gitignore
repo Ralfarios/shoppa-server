@@ -1,6 +1,7 @@
 ## Credentials
 .env
 dist/
+src/seeders/*
 
 ## Packages
 node_modules/
