@@ -15,7 +15,7 @@ You can make an user account for make a list and write in it what you gonna buy.
 This web application have 3 models. You can see the details in documentations down here.
 
 ### User
-For the detail, visit this User API Documentation
+For the detail, visit this [User](https://github.com/Ralfarios/shoppa-server/blob/dev/docs/USER_API_DOC.md) API Documentation
 | Route                  | Method      | Description                            | Authorization   |
 | ---------------------- | ----------- | -------------------------------------- | --------------- |
 | `/user/register`       | POST        | Register for User                      | Everyone        |
